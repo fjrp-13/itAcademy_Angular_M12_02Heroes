@@ -1,0 +1,47 @@
+<!-- <h2>Matching Game</h2> -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+<div id="game">
+    <div class="container unsolved" *ngIf="unmatchedItems.length>0">
+        <div class="pair_items left">
+            <div class="pair_items_title">Heroes</div>
+            <button *ngFor="let item of unmatchedItems"
+                    class="item btn btn-outline-primary btn-block"
+                    [ngClass]="{'btn-primary selected': leftpartSelectedId==item.id}"
+                    (click)="leftpartSelect(item.id)">
+                {{item.name}}
+            </button>
+        </div>
+        <div class="pair_items right">
+            <div class="pair_items_title">Power / Ability</div>
+            <button *ngFor="let item of unmatchedItems | shuffle "
+                    class="item btn btn-outline-primary btn-block"
+                    [ngClass]="{'btn-primary selected': rightpartSelectedId==item.id}"
+                    (click)="rightpartSelect(item.id)">
+                {{item.power}}
+            </button>
+        </div>
+    </div>
+
+    <div id="matched" class="container border border-primary pt-3 " *ngIf="matchedItems.length>0 && !solved">
+        <div *ngFor="let item of matchedItems">
+            <div class="card bg-light">
+                <div class="card-body text-center pt-3">
+                    <p class="text-bold m-0">{{ item.name }}</p>
+                    <small>{{ item.power }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="gameSolved" class="container solved" *ngIf="solved">
+        <div class="card border-success">
+            <div class="card-body text-success">
+                You need <span class="attempts">{{attempts}}</span> attemps to solve the game.
+                <div class="text-center mt-3">
+                    <button class="btn btn-success" (click)="resetGame();">Play again!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
