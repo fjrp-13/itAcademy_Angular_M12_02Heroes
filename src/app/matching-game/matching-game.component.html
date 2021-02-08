@@ -37,7 +37,8 @@
     <div id="gameSolved" class="container solved" *ngIf="solved">
         <div class="card border-success">
             <div class="card-body text-success">
-                You need <span class="attempts">{{attempts}}</span> attemps to solve the game.
+                You need <span class="attempts">{{attempts}}</span> attemps to solve the game.<br>
+                <small class="mt-3">(A perfect game is solved with {{heroes.length}} attemps.)</small>
                 <div class="text-center mt-3">
                     <button class="btn btn-success" (click)="resetGame();">Play again!</button>
                 </div>
